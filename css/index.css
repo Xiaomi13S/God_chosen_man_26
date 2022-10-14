@@ -1,0 +1,157 @@
+body{
+    position: relative;
+}
+.box {
+    margin: 100px auto 0;
+    /* width: 200px; */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.lucky{
+    font-size: 50px;
+    width: 900px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+.lucky span{
+    display: inline-block;
+    width: 20%;
+    white-space: nowrap;
+}
+.btn,.save,.show,.rank{
+    background: skyblue;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    
+    font-size: 20px;
+    height: 36px;
+    line-height: 36px;
+    outline: none;
+    margin-top: 30px;
+    width: 122px;
+}
+.bigger{
+    font-size: 50px;
+}
+/* ul */
+ul,li{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.ul-box li span:nth-child(5){
+    margin-left: 30px;
+}
+.ul-box{
+    width: 720px;
+}
+.ul-box li{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.ul-box li span{
+    width: 70px;
+    border: 1px solid skyblue;
+    border-radius: 4px;
+    margin: 5px 0;
+    cursor: pointer;
+    transition: transform .2s linear;
+    height: 28px;
+    line-height: 28px;
+}
+span.active{
+    background: orange;
+}
+.count{
+    margin-top: 20px;
+    font-size: 60px;
+    width: 100px;
+    height: 40px;
+    color: #FF2D00;
+    cursor: pointer;
+}
+/* --- */
+.ul-box li span:hover{
+    z-index: 2;
+    box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
+    transform: translate3d(0,-2px,0);
+}
+/* 修改数字 */
+.box-count{
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    background: rgba(0,0,0,0.6);
+    z-index: 99;
+}
+.main{
+    width: 260px;
+    height: 120px;
+    background: #fff;
+    margin: 200px auto;
+    padding: 60px 20px;
+}
+.main label{
+    width: 160px;
+}
+.main input{
+    width: 50px;
+}
+.main li{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 10px 0;
+    justify-content: flex-start;
+}
+/* 显示历史 */
+.box-history{
+    display: none;
+}
+.box-history ul{
+    width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+
+}
+.rank-center{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.stu-ul li{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+.stu-ul .time{
+    width: 200px;
+    display: inline-block;
+}
+.stu-name{
+    width: 100px;
+    display: inline-block;
+}
+.stu-rank{
+    margin-left: 30px;
+}
+.stu-ul .stu{
+    display: inline-block;
+    margin-left: 20px;
+    max-width: 580px;
+}
+.box-history li{
+    
+}

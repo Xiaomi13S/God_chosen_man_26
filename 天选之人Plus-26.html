@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/animate.min.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <div class="box">
+
+        <ul class="ul-box">
+        </ul>
+
+        <div class="lucky">天选之人</div>
+        <div>
+            <button class="btn">开始</button>
+            <button class="save">记录为有效</button>
+            <button class="show">显示历史</button>
+            <button class="rank">显示排行</button>
+        </div>
+        <div class="count">10</div>
+
+        <div class="box-count">
+            <div class="main">
+                <ul>
+                    <li>
+                        <label for="count">倒计时</label>
+                        <input type="text" name="count" id="count">
+                    </li>
+                    <li>
+                        <label for="p-num">抽奖人数</label>
+                        <input type="text" name="p-num" id="student">
+                    </li>
+                    <li>
+                        <label for="p-num">抽奖模式</label>
+                        <input type="text" name="p-type" id="type">
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- 显示历史记录 -->
+        <div class="box-history">
+            <ul class="stu-ul"></ul>
+        </div>
+    </div>
+
+    <script>
+const arr = [
+            ['邓意祥','刘俊杰', '何艳玲',  '段善龙', '张新隆', '王磊', '曾杰'],
+            ['黄若峰','杨子玲', '刘可欣',  '李亚龙', '刘佳承', '刘晨宇', '刘佳成'],
+            ['盛飞扬','侯凌鹏', '王力',  '孙博强', '卢鹏宇', '詹越', '徐碧'],
+            ['唐小锋','李文镜', '陈杰',  '王瑞凯', '邓钊泉', '李王宇', '苟晨皓'],
+            ['梁玉玲','谌癸霖', '贺倩',  '吴键', '陈豪杰', '庞艳', '王春强'],
+            ['--','代涛', '林海亮',  '蒋洪萍', '杨尤明', '谭文馨', '张恩剑'],
+            ['刘立刚','王敖宇', '田雨浓',  '朱成治', '牟长春', '杜春龙', '陈浩林'],
+            ['--=','吴剑平', '李婷',  '陈星宇', '--', '岳杰', '杨成兴 '],
+        ]
+    </script>
+    <script src="index.js"></script>
+</body>
+</html>

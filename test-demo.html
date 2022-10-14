@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+    var pri= ["一等奖","二等奖","三等奖","参与奖"];
+        function updateRandom(){
+            var ranNum= Math.random();
+            var n= Math.random()/4;
+            if(ranNum<0.01){
+                return n;
+            }
+            else if(ranNum<0.04){
+                return n+0.25;
+            }
+            else if(ranNum<0.1){
+                return n+0.5;
+            }
+            else if(ranNum<1){
+                return n+0.75;
+            }
+        }
+        var randomIn=Math.floor(4*updateRandom());
+
+        var obj = {}
+        for(var i = 0;i < 100;i++){
+            if(obj[pri[randomIn]]){
+                obj[pri[randomIn]]++
+            }else {
+                obj[pri[randomIn]] = 1
+            }
+        }
+        // console.log(pri[randomIn])
+        console.log(obj)
+        
+
+
+        
+    </script>
+</body>
+</html>

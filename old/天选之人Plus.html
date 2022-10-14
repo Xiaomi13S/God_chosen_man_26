@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            margin: 100px auto;
+            /* width: 200px; */
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .lucky{
+            font-size: 50px;
+            width: 900px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .lucky span{
+            display: inline-block;
+            width: 20%;
+        }
+        .btn{
+            background: skyblue;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            cursor: pointer;
+            
+            font-size: 20px;
+            height: 36px;
+            line-height: 36px;
+            outline: none;
+            margin-top: 30px;
+            width: 122px;
+        }
+        .bigger{
+            font-size: 50px;
+        }
+        /* ul */
+        ul,li{
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        li span:nth-child(6){
+            margin-left: 30px;
+        }
+        .ul-box{
+            width: 880px;
+        }
+        ul li{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+        li span{
+            width: 70px;
+            border: 1px solid skyblue;
+            border-radius: 10px;
+            margin: 5px 0;
+        }
+        span.active{
+            background: orange;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="box">
+        <ul class="ul-box">
+        </ul>
+
+        <div class="lucky">天选之人</div>
+        <button class="btn">开始</button>
+
+    </div>
+
+    <script>
+        const arr = [
+                    ['--','强紫文', '乔俊杰', '田俊宏', '李俊贤', '陈维维', '梁超', '张永帆', '张兆赫', '谭得伟'],
+                    ['--','何虎成', '青欢','张蓉', '周彬', '王真灵', '张瑜', '姚绍东', '艾春艳', '--'],
+                    ['--','吴佳林', '--', '杨阳', '陈龙', '于浩洺', '李旭东', '曾祥彬', '杨伟','--'],
+                    ['--','刘明珠', '张小东', '谭佳和','刘杭川', '李崇辉', '李海龙', '何柿鸿', '郭文波','--'],
+                    ['胡美芝', '李辉', '杨璐豪', '胥嘉麟','谭刘君','吴章帆', '甘子钊', '杨玲', '王文韬', '蔡林江'],
+                    ['卜清雄', '王俊杰', '杨明宏', '李海林', '田霖', '胡英', '王剑桥', '陈鑫', '石化敏','--'],
+                    ['--','崔菁菁', '苏开骏', '杨孟帆', '魏宇鹏', '刘超', '艾米', '胡珅', '李瑞', '张建中']
+                ]
+        
+        // 1.动态创建表格
+        const ul = document.querySelector('ul')
+        for (let i = 0; i < arr.length; i++) {
+            // 创建li标签
+            const li = document.createElement('li')
+            ul.appendChild(li)
+            for (let j = 0; j < arr[i].length;j++){
+                // 创建span
+                const span = document.createElement('span')
+                span.innerHTML = arr[i][j]
+                span.setAttribute('id', `_${i}-${j}`)
+                li.appendChild(span)
+            }
+        }
+        // 遍历找到所有为空的id, 用一个数组存起来之后使用
+        let noStudents = []
+        let allSpan = document.querySelectorAll('li span')
+        allSpan.forEach(item => {
+            if (item.innerHTML == '--') {
+                noStudents.push(item.id)
+            }
+        })  
+
+        const btn = document.querySelector('.btn')
+        const lucky = document.querySelector('.lucky')
+
+        let timerId = 0  // 定时器
+        let randomX = 0  // id
+        let randomY = 0  
+        let flag = true // 控制按钮
+
+        // 随机抽取ID
+        const getId = () => {
+            randomX = parseInt(Math.random() * arr.length)
+            randomY = parseInt(Math.random() * arr[0].length)
+            return `_${randomX}-${randomY}`
+        }
+        // 按行抽取rows
+        const getRowsArr = () => {
+            let tempArr = []
+            randomX = parseInt(Math.random() * arr.length)
+            for (var i = 0; i < 10; i++){
+                tempArr.push(`_${randomX}-${i}`)
+            }
+            return tempArr
+        }
+        // 按列抽取 cols
+        const getColsArr = () => {
+            let tempArr = []
+            randomY = parseInt(Math.random() * arr[0].length)
+            for (var i = 0; i < arr.length; i++){
+                tempArr.push(`_${i}-${randomY}`)
+            }
+            return tempArr
+        }
+
+        // 定时器function逻辑
+        const getRandom = (studentNum, type) => {
+                let tempArr = [] 
+                // 根据Type决定抽取方式
+                if (type == 'row'){
+                    tempArr = getRowsArr()
+                } else if (type == 'col'){
+                    tempArr = getColsArr()
+                } else if (type == 'id') {
+                    // 存选中的id
+                    while(tempArr.length < studentNum){
+                        let randomId = getId()
+                        // 如果选中的id不是--空位置， 存到tempArr中
+                        if(!noStudents.includes(randomId)&&!tempArr.includes(randomId)){
+                            // 可能有同学会抽中两次，amazing！ !tempArr.includes(randomId) 去重
+                            tempArr.push(randomId)
+                        }
+                    }
+                }
+
+                // 清空已经被选中的
+                const selected = document.querySelectorAll('.active')
+                selected.forEach(el => {
+                    el.className = ''
+                })
+                // 将名字显示
+                let str = ''
+                tempArr.forEach(item =>{
+                   let span =  document.querySelector(`#${item}`)
+                   span.classList.add('active')
+                   str += `<span>${span.innerHTML}</span>\t`
+                })
+                lucky.innerHTML = str
+
+                // 可以思考如何按行抽取, 按列抽取? 行 id 0-0 0-1
+            }
+        // let fake = 0
+        btn.addEventListener('click', () => {
+            // 再次点击 停止定时器
+            if (!flag) {
+                clearInterval(timerId)
+                flag = true
+                btn.innerHTML = '开始'
+                return
+            }
+            flag = false
+            btn.innerHTML = 'Stop'
+            timerId = setInterval(getRandom.bind(this, 4, 'id'), 10)
+        })
+        // 增加键盘点击触发
+        document.addEventListener('keydown',(e)=>{
+            // console.log(e)
+            if (e.key === 'Enter' || e.key === ' '){
+                btn.click()
+            }
+        })
+    </script>
+</body>
+</html>
